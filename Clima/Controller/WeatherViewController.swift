@@ -9,8 +9,10 @@
 import UIKit
 
 class WeatherViewController: UIViewController , UITextFieldDelegate {
-    @IBOutlet weak var searchTextField: UITextField!
     
+    let weatherManager = WeatherManager()
+        
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -36,6 +38,8 @@ class WeatherViewController: UIViewController , UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        weatherManager.fetchWeather(cityName: textField.text!)
+        
         textField.text = ""
     }
 }
